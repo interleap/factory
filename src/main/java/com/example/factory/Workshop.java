@@ -1,20 +1,23 @@
 package com.example.factory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Workshop {
     private Manager manager;
     private Machine machine;
+    private List<Alertable> alertReceivers;
 
-    public void addManager(Manager manager) {
-        this.manager = manager;
+    public Workshop() {
+        alertReceivers = new ArrayList<>();
+    }
+
+    public void register(Alertable receiver) {
+        alertReceivers.add(receiver);
     }
 
     public void sendAlert(Alert alert) {
-        if(manager != null) manager.alert(alert);
-        if(machine != null) machine.alert(alert);
-    }
-
-    public void addMachine(Machine machine) {
-        this.machine = machine;
+        alertReceivers.forEach(receiver -> receiver.alert(alert));
     }
 
 }

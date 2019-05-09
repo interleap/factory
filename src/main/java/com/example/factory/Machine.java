@@ -1,6 +1,6 @@
 package com.example.factory;
 
-public class Machine {
+public class Machine implements Alertable{
 
     private boolean started;
 

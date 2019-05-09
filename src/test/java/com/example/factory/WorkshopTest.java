@@ -12,7 +12,7 @@ public class WorkshopTest {
     public void shouldSendAlertsToAnyRegisteredManager(){
         Workshop workshop = new Workshop();
         Manager manager = mock(Manager.class);
-        workshop.addManager(manager);
+        workshop.register(manager);
         Alert alert = new Alert("Some Alert Message", Severity.INFO);
         workshop.sendAlert(alert);
         verify(manager).alert(alert);
@@ -23,7 +23,7 @@ public class WorkshopTest {
         Workshop workshop = new Workshop();
         Machine machine = new Machine();
 
-        workshop.addMachine(machine);
+        workshop.register(machine);
         machine.start();
         Alert alert = new Alert("Critical Alert", Severity.CRITICAL);
         workshop.sendAlert(alert);
@@ -35,7 +35,7 @@ public class WorkshopTest {
         Workshop workshop = new Workshop();
         Machine machine = new Machine();
 
-        workshop.addMachine(machine);
+        workshop.register(machine);
         machine.start();
         Alert alert = new Alert("Non Critical Alert", Severity.INFO);
         workshop.sendAlert(alert);
