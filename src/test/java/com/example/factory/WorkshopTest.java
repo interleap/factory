@@ -2,43 +2,30 @@ package com.example.factory;
 
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class WorkshopTest {
     @Test
-    public void shouldSendAlertsToAnyRegisteredManager(){
+    public void shouldSendAlertsToAnyRegisteredAlertable(){
         Workshop workshop = new Workshop();
-        Manager manager = mock(Manager.class);
-        workshop.register(manager);
+        Alertable alertable = mock(Alertable.class);
+        workshop.register(alertable);
         Alert alert = new Alert("Some Alert Message", Severity.INFO);
         workshop.sendAlert(alert);
-        verify(manager).alert(alert);
+        verify(alertable).alert(alert);
     }
 
     @Test
-    public void shouldStopMachineIfACriticalAlertIsTriggered(){
+    public void shouldSendAlertsToMultipleRegisteredAlertables(){
         Workshop workshop = new Workshop();
-        Machine machine = new Machine();
-
-        workshop.register(machine);
-        machine.start();
-        Alert alert = new Alert("Critical Alert", Severity.CRITICAL);
+        Alertable alertable1 = mock(Alertable.class);
+        Alertable alertable2 = mock(Alertable.class);
+        workshop.register(alertable1);
+        workshop.register(alertable2);
+        Alert alert = new Alert("Some Alert Message", Severity.INFO);
         workshop.sendAlert(alert);
-        assertFalse(machine.isStarted());
-    }
-
-    @Test
-    public void shouldNotStopMachineIfANonCriticalAlertIsTriggered(){
-        Workshop workshop = new Workshop();
-        Machine machine = new Machine();
-
-        workshop.register(machine);
-        machine.start();
-        Alert alert = new Alert("Non Critical Alert", Severity.INFO);
-        workshop.sendAlert(alert);
-        assertTrue(machine.isStarted());
+        verify(alertable1).alert(alert);
+        verify(alertable2).alert(alert);
     }
 }
