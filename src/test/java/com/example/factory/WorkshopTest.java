@@ -2,6 +2,7 @@ package com.example.factory;
 
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -27,5 +28,16 @@ public class WorkshopTest {
         workshop.sendAlert(alert);
         verify(alertable1).alert(alert);
         verify(alertable2).alert(alert);
+    }
+
+    @Test
+    public void shouldAssignJobToAnAvailableEmployee(){
+        Workshop workshop = new Workshop();
+        Employee employee = new Employee();
+        workshop.add(employee);
+        String jobId = "job id 1";
+        workshop.make(jobId);
+        assertTrue(employee.isAssigned(jobId));
+
     }
 }
