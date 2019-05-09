@@ -7,7 +7,11 @@ public class Workshop {
         this.manager = manager;
     }
 
-    public void sendAlert(String message) {
-        if(manager != null) manager.alert(message);
+    public void sendAlert(Alert alert) {
+        if(manager != null) manager.alert(alert);
+    }
+
+    public void addMachine(Machine machine) {
+
     }
 }
