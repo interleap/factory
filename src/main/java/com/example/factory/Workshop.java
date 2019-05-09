@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Workshop {
-    private Manager manager;
-    private Machine machine;
     private List<Alertable> alertReceivers;
 
     public Workshop() {
