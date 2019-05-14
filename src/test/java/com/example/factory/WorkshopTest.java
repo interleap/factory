@@ -16,4 +16,5 @@ public class WorkshopTest {
         workshop.sendAlert(alert);
         verify(notificationReceiver).alert(alert);
     }
+
 }
