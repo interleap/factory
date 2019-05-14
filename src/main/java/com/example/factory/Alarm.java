@@ -1,6 +1,6 @@
 package com.example.factory;
 
-public class Alarm implements Alertable{
+public class Alarm{
 
     private boolean triggered;
 
@@ -8,14 +8,12 @@ public class Alarm implements Alertable{
         return triggered;
     }
 
-    public void alert(Alert alert) {
-        if(alert.isCritical()) {
-            trigger();
-        }
-    }
-
     private void trigger() {
         triggered = true;
+    }
+
+    private void turnOff() {
+        triggered = false;
     }
 
 }
