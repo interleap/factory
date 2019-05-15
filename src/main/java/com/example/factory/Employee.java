@@ -22,4 +22,8 @@ public class Employee {
     public void completeJob(Job job) {
         this.jobs.remove(job);
     }
+
+    boolean hasJob(Job job) {
+        return getJobs().contains(job);
+    }
 }
